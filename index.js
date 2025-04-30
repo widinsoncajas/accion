@@ -1,31 +1,29 @@
 const express = require('express');
 const path = require('path');
+const { exec } = require('child_process'); // Para ejecutar comandos del sistema
 const app = express();
 
-// Configurar Express para servir archivos estáticos desde la carpeta "public/imagenes"
-app.use('/imagenes', express.static(path.join(__dirname, 'public', 'imagenes')));
-
-// Redirigir rutas a archivos PHP
+// Ruta para ejecutar y servir el archivo PHP
 app.get('/', (req, res) => {
-  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/inicio.php');  // Redirige a la página PHP en tu servidor de Render
+  // Comando para ejecutar el archivo PHP
+  exec('php ' + path.join(__dirname, 'inicio.php'), (err, stdout, stderr) => {
+    if (err) {
+      // Si hay un error, muestra el error
+      console.error('Error:', err);
+      return res.status(500).send('Error ejecutando el archivo PHP');
+    }
+    if (stderr) {
+      // Si hay errores en stderr, muestra esos errores
+      console.error('stderr:', stderr);
+      return res.status(500).send('Error en la ejecución de PHP');
+    }
+    // Si no hay errores, responde con la salida del archivo PHP
+    res.send(stdout);
+  });
 });
 
-app.get('/GAMA_FAMILIAR/GAMA_FAMI.php', (req, res) => {
-  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/GAMA_FAMI.php');
-});
-
-app.get('/GAMA_MEDIA/GAMA_MEDIAA.php', (req, res) => {
-  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/GAMA_MEDIAA.php');
-});
-
-
-// Middleware para manejar errores 404 (Página no encontrada)
-app.use((req, res) => {
-  res.status(404).send('Página no encontrada');
-});
-
-// Establecer el puerto en el que el servidor Express escuchará
+// Puerto donde el servidor escuchará
 const port = process.env.PORT || 3000;
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
   console.log(`Servidor corriendo en puerto ${port}`);
 });
