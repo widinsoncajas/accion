@@ -7,16 +7,17 @@ app.use('/imagenes', express.static(path.join(__dirname, 'public', 'imagenes')))
 
 // Redirigir rutas a archivos PHP
 app.get('/', (req, res) => {
-  res.redirect('http://192.168.0.11/CAMARO_RAPTOR/inicio.php');  // Redirige a la página PHP en tu servidor Apache
+  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/inicio.php');  // Redirige a la página PHP en tu servidor de Render
 });
 
 app.get('/GAMA_FAMILIAR/GAMA_FAMI.php', (req, res) => {
-  res.redirect('http://192.168.0.11/CAMARO_RAPTOR/GAMA_FAMI.php');
+  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/GAMA_FAMI.php');
 });
 
 app.get('/GAMA_MEDIA/GAMA_MEDIAA.php', (req, res) => {
-  res.redirect('http://192.168.0.11/CAMARO_RAPTOR/GAMA_MEDIAA.php');
+  res.redirect('https://accion-6.onrender.com/CAMARO_RAPTOR/GAMA_MEDIAA.php');
 });
+
 
 // Middleware para manejar errores 404 (Página no encontrada)
 app.use((req, res) => {
