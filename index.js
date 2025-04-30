@@ -7,15 +7,15 @@ app.use('/imagenes', express.static(path.join(__dirname, 'public', 'imagenes')))
 
 // Redirigir rutas a PHP
 app.get('/', (req, res) => {
-  res.redirect('http://localhost:8080/inicio.php');
+  res.redirect('http://localhost:8082/inicio.php');
 });
 
 app.get('/GAMA_FAMILIAR/GAMA_FAMI.php', (req, res) => {
-  res.redirect('http://localhost:8080/GAMA_FAMI.php');
+  res.redirect('http://localhost:8082/GAMA_FAMI.php');
 });
 
 app.get('/GAMA_MEDIA/GAMA_MEDIAA.php', (req, res) => {
-  res.redirect('http://localhost:8080/GAMA_MEDIAA.php');
+  res.redirect('http://localhost:8082/GAMA_MEDIAA.php');
 });
 
 // Middleware para manejar errores 404
