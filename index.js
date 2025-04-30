@@ -7,15 +7,15 @@ app.use('/imagenes', express.static(path.join(__dirname, 'public', 'imagenes')))
 
 // Redirigir rutas a archivos PHP
 app.get('/', (req, res) => {
-  res.redirect('http://localhost:8080/inicio.php');  // Redirige a la página PHP en tu servidor Apache
+  res.redirect('http://localhost/CAMARO_RAPTOR/inicio.php');  // Redirige a la página PHP en tu servidor Apache
 });
 
 app.get('/GAMA_FAMILIAR/GAMA_FAMI.php', (req, res) => {
-  res.redirect('http://localhost:8080/GAMA_FAMI.php');
+  res.redirect('http://localhost/CAMARO_RAPTOR/GAMA_FAMI.php');
 });
 
 app.get('/GAMA_MEDIA/GAMA_MEDIAA.php', (req, res) => {
-  res.redirect('http://localhost:8080/GAMA_MEDIAA.php');
+  res.redirect('http://localhost/CAMARO_RAPTOR/GAMA_MEDIAA.php');
 });
 
 // Middleware para manejar errores 404 (Página no encontrada)
